@@ -5,6 +5,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+# ✅ This must be the first Streamlit command
+st.set_page_config(page_title="❤️ Heart Disease Prediction App")
+
 # Function to load data and train model — cached to avoid retraining every time
 @st.cache_resource
 def load_model():
@@ -19,11 +22,10 @@ def load_model():
     accuracy = accuracy_score(y_test, model.predict(X_test))
     return model, accuracy
 
-# Load model and accuracy once
+# Load model and accuracy
 model, accuracy = load_model()
 
 # Streamlit UI
-st.set_page_config(page_title="❤️ Heart Disease Prediction App")
 st.title("❤️ Heart Disease Prediction App")
 st.markdown(f"### Model Accuracy: {accuracy*100:.2f}%")
 
@@ -59,4 +61,3 @@ st.markdown("""
     footer {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
-
